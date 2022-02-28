@@ -20,21 +20,125 @@ public class ArithmeticApp {
         if(str==""){
             System.out.println("invalid expression: " + str);
         }
-        String[] expression = new String[str.length()];
+        String[] strArray = null;
+        strArray = str.split(" ");
+        //TODO: fix getting spaces
+//
         String operator ="+-/*";
-        for(int i =0; i<str.length()+1; i++){
-//            if(operator.contains(str[i]) && operator.contains(str[i+1])){
-//                System.out.println("invalid expression: " + str); //two operations in a row
-//            }
+        int len = str.length()-1;
+        for(int i =0; i<len; i++){
+            //System.out.println(strArray[i]); //two operations in a row
+            if(operator.contains(Character.toString(str.charAt(i))) && operator.contains(Character.toString(str.charAt(i+1)))){
+                System.out.println("invalid expression: " + str); //two operations in a row
+            }
         }
-        //TODO: add error division by zero
-        //TODO: add error Error: invalid expression: "6A" not valid base 16 - hexa
-        System.out.println("The value of expression "+ str+ " is: ");
+        int index=0;
+        int[] nums = new int[str.length()];
+        char[] operations_arr = new char[str.length()];
+        int counter_nums=0; int counter_operations=0;
+        while(index<=str.length()) {
+            String num_string_first =new String();
+            if(index<str.length()&&operator.contains(Character.toString(str.charAt(index)))==false&& Character.toString(str.charAt(index))!=" "){
+                while(index<str.length()&&operator.contains(Character.toString(str.charAt(index)))==false&& Character.toString(str.charAt(index))!=" "
+                ){
+                    num_string_first+= Character.toString(str.charAt(index));
+                    nums[counter_nums] = Integer.valueOf(num_string_first, base);
+                    index++;
+                }
+                index--;
+                counter_nums++;
+                 //two operations in a row
+            }
+            index++;
+//            while(Character.toString(str.charAt(index))==" "||operator.contains(Character.toString(str.charAt(index)))){
+//                index++;
+//            }
+//
+//            String num_string_second =new String();
+//            while(operator.contains(Character.toString(str.charAt(index)))==false&& Character.toString(str.charAt(index))!=" " &&
+//                    index<str.length()-1){
+//                num_string_second+= Character.toString(str.charAt(index));
+//                index++;
+//            }
+//            nums[counter] = Integer.valueOf(num_string_second, base);
+//            System.out.println("second: " + nums[counter]); //two operations in a row
+////            if(operator.contains(Character.toString(str.charAt(index)))){
+////
+////            }
+////            index++;
+        }
+        System.out.println("nums arr: " + Arrays.toString(nums));
+        index=0;
+        while(index<str.length()-1) {
 
-        Integer.valueOf(str, base); //gets int converted from base
-        Integer.toHexString();
-        Integer.toOctalString();
-        Integer.toBinaryString();
+            if(operator.contains(Character.toString(str.charAt(index)))){
+                operations_arr[counter_operations] = str.charAt(index);
+                counter_operations++;
+                }
+
+            index++;
+            }
+        System.out.println("operations_arr: " + Arrays.toString(operations_arr)); //two operations in a row
+        String priority_operations = "*/";
+        int final_num = 0; boolean flag_operations = false; int i=0;
+        while( i<counter_operations){
+           if(i<counter_operations-1 &&
+                    priority_operations.contains(Character.toString(operations_arr[i+1])) && !priority_operations.contains(Character.toString(operations_arr[i]))){
+                //case of second operations is priority, first isn't, then do second first
+                flag_operations=true;
+                if(i==0){
+                    final_num = nums[1];
+                }
+                if(operations_arr[i+1]=='*'){
+                    final_num += nums[i+1]*nums[i+2] ;
+                }
+                if(operations_arr[i+1]=='/'){
+                    if(nums[i+2]==0){
+                        System.out.println("Error: division by zero");
+                    }
+                    final_num +=nums[i+1] / nums[i+2];
+                }
+                //TODO: fix for case of first
+            }
+            if(operations_arr[i]=='+'){
+                final_num += nums[i]+ nums[i+1] ;
+            }
+            if(operations_arr[i]=='-'){
+                final_num += (nums[i]-nums[i+1]);
+            }
+            if(operations_arr[i]=='*'){
+                final_num += nums[i]*nums[i+1];
+            }
+            if(operations_arr[i]=='/'){
+                if(nums[i+1]==0){
+                    System.out.println("Error: division by zero");
+                }
+                final_num += nums[i]/=nums[i+1];
+            }
+
+            if(flag_operations){
+                i++;
+            }
+            i++;
+        }
+        String final_num_str = Integer.toString(final_num);
+
+        //TODO: add error Error: invalid expression: "6A" not valid base 16 - hexa
+        if(base==16){
+            final_num_str = Integer.toHexString(final_num);
+        }
+        if(base==8){
+            final_num_str = Integer.toOctalString(final_num);
+        }
+        if(base==2){
+            final_num_str = Integer.toBinaryString(final_num);
+        }
+        System.out.println("The value of expression "+ str+ " is: " + final_num_str);
+
+//        Integer.valueOf(str, base); //outputs int from string converted from base
+//        Integer.toHexString();
+//        Integer.toOctalString();
+//        Integer.toBinaryString();
 
     }
 
