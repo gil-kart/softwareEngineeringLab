@@ -31,6 +31,11 @@ public class ArithmeticApp {
         //TODO: add error Error: invalid expression: "6A" not valid base 16 - hexa
         System.out.println("The value of expression "+ str+ " is: ");
 
+        Integer.valueOf(str, base); //gets int converted from base
+        Integer.toHexString();
+        Integer.toOctalString();
+        Integer.toBinaryString();
+
     }
 
     //flow:
