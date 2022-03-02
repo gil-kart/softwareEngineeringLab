@@ -1,3 +1,0 @@
-Enter base (2/8/10/16):
-Enter expression:
-The value of expression CF -            CF  +   1E is : 1E

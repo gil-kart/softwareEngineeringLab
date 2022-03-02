@@ -1,3 +1,0 @@
-Enter base (2/8/10/16):
-Enter expression:
-Error: trying to divide by 0 (evaluated: "0")

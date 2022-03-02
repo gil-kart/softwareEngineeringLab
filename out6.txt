@@ -1,3 +1,0 @@
-Enter base (2/8/10/16):
-Enter expression:
-Error: invalid expression: ""

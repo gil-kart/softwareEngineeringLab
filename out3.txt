@@ -1,3 +1,0 @@
-Enter base (2/8/10/16):
-Enter expression:
-The value of expression 1C  + 2D + 3F -          4E is : 3A

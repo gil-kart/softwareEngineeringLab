@@ -1,4 +1,0 @@
-Enter base (2/8/10/16):
-Error – this base isn’t supported. Please enter a base (2/8/10/16):
-Enter expression:
-Error: invalid expression: "6A"
