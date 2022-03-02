@@ -1,0 +1,3 @@
+Enter base (2/8/10/16):
+Enter expression:
+The value of expression CC + CE - CD + AF * 2E - 2E is : 2011

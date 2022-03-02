@@ -1,0 +1,3 @@
+Enter base (2/8/10/16):
+Enter expression:
+The value of expression A50 - B30 + A5 / C5 + E1 is : 1
