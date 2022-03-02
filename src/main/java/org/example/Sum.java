@@ -13,7 +13,7 @@ public class Sum {
         while(input_not_correct) {
             base = input.nextInt();
             if (base != 2 && base != 8 && base != 10 && base != 16) {
-                System.out.println("Error - this base isn’t supported. Please enter a base (2/8/10/16):\n");
+                System.out.println("Error - this base isn\'t supported. Please enter a base (2/8/10/16):\n");
             }
             else{
                 input_not_correct = false;
@@ -87,10 +87,9 @@ public class Sum {
         else if(base == 8)
             result = Integer.toOctalString((int) res);
         else if(base == 10)
-            result = String.valueOf(res);
+            result = String.valueOf((int) res);
         else if(base == 16)
             result = Integer.toHexString((int) res);
-
         System.out.println("The value of expression " + save_expression + " is: " + result.toUpperCase());
 
         input.close();
@@ -119,10 +118,11 @@ public class Sum {
                 if(signs.get(i).equals('*'))
                     list_of_num.set(i, left_var * right_var);
                 else
-                    list_of_num.set(i, left_var / right_var);
+                    list_of_num.set(i, Float.valueOf((int)(left_var / right_var)));
                 list_of_num.remove(i+1);
                 signs.remove(i);
                 i--;
+
             }
         }
         float res = list_of_num.get(0);
